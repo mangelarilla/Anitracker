@@ -5,7 +5,7 @@ html, body, main {
 
 main {
 	display: grid;
-	grid-template-columns: repeat(5, 20%);
+	grid-template-columns: 100%;
 	place-items: center;
 	place-content: space-around;
 }
