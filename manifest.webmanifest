@@ -1,0 +1,36 @@
+{
+    "name" : "Anitracker",
+    "short_name" : "Anitracker",
+    "start_url" : "https://anitracker.maadsharp.net/",
+    "display" : "standalone",
+    "orientation" : "portrait",
+    "background_color" : "white",
+    "theme_color" : "#80abb2",
+    "lang" : "English",
+    "description" : "Cross platform anime tracker for Anilist & Kitsu",
+    "icons" : [
+        {
+            "src": "https://anitracker.maadsharp.net/assets/icons/icon_48.png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "https://anitracker.maadsharp.net/assets/icons/icon_72.png",
+            "sizes": "72x72"
+        },
+        {
+            "src": "https://anitracker.maadsharp.net/assets/icons/icon_96.png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "https://anitracker.maadsharp.net/assets/icons/icon_144.png",
+            "sizes": "144x144"
+        },
+        {
+            "src": "https://anitracker.maadsharp.net/assets/icons/icon_192.png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "https://anitracker.maadsharp.net/assets/icons/icon_512.png",
+            "sizes": "512x512"
+        }
+    ]}

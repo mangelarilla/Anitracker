@@ -1,7 +1,18 @@
 html, body, main {
 	height: 100%;
 	background-color: #80abb2;
+	box-sizing: border-box;
+	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-overflow-scrolling: touch;
 }
+
+/* 
+button {
+   user-select: none;
+} 
+*/
 
 main {
 	display: grid;
