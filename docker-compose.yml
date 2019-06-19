@@ -1,0 +1,10 @@
+version: '3.7'  
+
+services:
+  anitracker:
+    image: nginx:stable
+    volumes: 
+      - ./:/usr/share/nginx/html
+    ports:
+      - "8088:80"
+    command: "nginx -g 'daemon off;'"
