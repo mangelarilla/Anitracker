@@ -3,17 +3,17 @@
 	var provider = getCurrentProvider();
 
 	if (!provider) {
-		// showProviderSelection()
+		showProviderSelection()
 	} else {
 		syncWatchingList()
 	}
 
 	function getCurrentProvider() {
-		return null;
+		return localStorage.getItem('Anilist') || localStorage.getItem('Kitsu');
 	}
 
 	function showProviderSelection() {
-		document.querySelector('dialog').showModal();
+		document.querySelector('dialog').setAttribute("open","true");
 	}
 
 	function syncWatchingList() {
