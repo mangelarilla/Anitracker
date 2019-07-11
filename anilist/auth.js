@@ -18,7 +18,7 @@
 		return {
 			access_token: getValueFromPayload("access_token", payload) || "",
 			token_type: getValueFromPayload("token_type", payload) || "",
-			expires_in: getValueFromPayload("expires_in") || ""
+			expires_in: getValueFromPayload("expires_in", payload) || ""
 		};
 	}
 
