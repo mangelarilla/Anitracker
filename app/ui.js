@@ -10,7 +10,8 @@ export function renderWatchingList(data) {
 		<figure>
 			<img src="${entry.media.coverImage.large}" alt="${entry.media.title.userPreferred}" />
 			<figcaption>${entry.media.title.userPreferred}</figcaption>
-			<span>Ep. ${entry.progress}/${entry.media.episodes || "??"}</span>
+			<figcaption>Ep. ${entry.progress}/${entry.media.episodes || "??"}</figcaption>
+			<figcaption><button>-</button><button>+</button></figcaption>
 		</figure>`
 	).join('\n');
 }
