@@ -4,6 +4,20 @@
 		<meta charset="utf-8">
 		<title>Anitracker</title>
 		<link rel="manifest" href="/manifest.webmanifest">
-		<script src="/anilist/auth.js"></script>
+		<script type="module">
+			import { getOAuthPayload, parseJwt } from '/app/oauth.js';
+
+			var oauthCallback = getOAuthPayload();
+	
+			if (oauthCallback) {
+
+				const jwt = parseJwt(oauthCallback.access_token);
+
+				localStorage.setItem('Anilist_access_token', oauthCallback.access_token);
+				localStorage.setItem('Anilist_user_id', jwt.sub);
+			}
+
+			window.location.href = "/";
+		</script>
 	</head>
 </html>
