@@ -1,4 +1,4 @@
-import { getOrRenewAccessToken } from './oauth.js';
+import { getAccessToken } from './oauth.js';
 
 const WatchingQuery = `
 query ($id: Int) {
@@ -61,7 +61,7 @@ export function buildUpdateQuery(listEntryId, watchedEpisodes) {
 			'Accept': 'application/json',
 		},
 		body: JSON.stringify({
-			query: WatchingQuery,
+			query: UpdateQuery,
 			variables: { 
 				id: listEntryId,
 				progress: watchedEpisodes

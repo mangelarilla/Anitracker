@@ -1,11 +1,24 @@
 import { ApiUrl, buildUpdateQuery } from './anilist-queries.js';
+import { getEpisodeProgress, renderEpisodeProgress } from './ui.js';
 
-export function updateEpisodes(listEntryId, watchedEpisodes) {
-	const options = buildUpdateQuery(listEntryId, watchedEpisodes);
+export function increaseEpisodes(listEntryId) {
+	const currentProgress = getEpisodeProgress(listEntryId);
+  updateEpisodes(listEntryId, currentProgress+1);
+}
 
-	fetch(ApiUrl, options)
-		.then(response => response.json())
-		// Figure out what info we're getting, then render
-		.then(data => console.log(data))
-		.catch(error => console.error(error));
+export function decreaseEpisodes(listEntryId) {
+	const currentProgress = getEpisodeProgress(listEntryId);
+	updateEpisodes(listEntryId, currentProgress-1);
+}
+
+function updateEpisodes(listEntryId, watchedEpisodes) {
+  const options = buildUpdateQuery(listEntryId, watchedEpisodes);
+
+  fetch(ApiUrl, options)
+    .then(response => response.json())
+    .then(data => {
+    	const updatedMedia = data.data.SaveMediaListEntry; 
+    	renderEpisodeProgress(updatedMedia.id, updatedMedia.progress);
+    })
+    .catch(error => console.error(error));
 }
