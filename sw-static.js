@@ -1,7 +1,13 @@
 const CACHE_NAME = 'static-cache';
 const urlsToCache = [
   '/',
-  '/assets/styles.css'
+  '/assets/styles.css',
+  '/app/anilist-queries.js',
+  '/app/db.js',
+  '/app/main.js',
+  '/app/oauth.js',
+  '/app/ui.js',
+  '/app/ui.listeners.js'
 ];
 
 self.addEventListener('install', function(event) {

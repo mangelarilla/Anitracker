@@ -10,9 +10,8 @@ export function getAuthUrl() {
 	return document.getElementsByTagName('A')[0].getAttribute("href");
 }
 
-export function renderWatchingList(data) {
+export function renderWatchingList(entries) {
 	const main = document.getElementsByTagName('MAIN')[0];
-	const entries = data.data.MediaListCollection.lists[0].entries;
 
 	main.innerHTML = entries.map(entry =>  `
 		<figure data-id="${entry.id}">

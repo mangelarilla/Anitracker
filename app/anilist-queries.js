@@ -1,5 +1,21 @@
 import { getAccessToken } from './oauth.js';
 
+export function getWatchingList(userId) {
+	const options = buildWatchingQuery(userId);
+
+	return fetch(ApiUrl, options)
+		.then(response => response.json())
+		.then(data => data.data.MediaListCollection.lists[0].entries || []);
+}
+
+export function updateWatchingListEntry(listEntryId, watchedEpisodes) {
+	const options = buildUpdateQuery(listEntryId, watchedEpisodes);
+
+	return fetch(ApiUrl, options)
+	  .then(response => response.json())
+		.then(data => data.data.SaveMediaListEntry || {});
+}
+
 const WatchingQuery = `
 query ($id: Int) {
 	MediaListCollection(userId: $id, type: ANIME, status: CURRENT) {
@@ -29,16 +45,16 @@ query ($id: Int) {
 
 const UpdateQuery = `
 mutation ($id: Int, $progress: Int) {
-    SaveMediaListEntry (id: $id, progress: $progress) {
-        id
-        progress
-    }
+  SaveMediaListEntry (id: $id, progress: $progress) {
+    id
+    progress
+  }
 }
 `;
 
-export const ApiUrl = 'https://graphql.anilist.co';
+const ApiUrl = 'https://graphql.anilist.co';
 
-export function buildWatchingQuery(userId) {
+function buildWatchingQuery(userId) {
 	return {
 		method: 'POST',
 		headers: {
@@ -52,7 +68,7 @@ export function buildWatchingQuery(userId) {
 	}
 };
 
-export function buildUpdateQuery(listEntryId, watchedEpisodes) {
+function buildUpdateQuery(listEntryId, watchedEpisodes) {
 	return {
 		method: 'POST',
 		headers: {
