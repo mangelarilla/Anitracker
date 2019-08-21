@@ -15,6 +15,7 @@ export function renderWatchingList(entries) {
 
 	main.innerHTML = entries.map(entry =>  `
 		<figure data-id="${entry.id}">
+			<img src="${entry.media.coverImage.large}" alt="${entry.media.title.userPreferred}" />
 			<figcaption>${entry.media.title.userPreferred}</figcaption>
 			<figcaption>Ep. <span class="episode-progress">${entry.progress}</span>/${entry.media.episodes || "??"}</figcaption>
 			<figcaption>
@@ -42,5 +43,3 @@ export function showSync() {
 export function updateSyncAttempts(remainingAttempts) {
 	document.getElementById('sync-attempts').innerText = remainingAttempts;
 }
-
-			// <img src="${entry.media.coverImage.large}" alt="${entry.media.title.userPreferred}" />
