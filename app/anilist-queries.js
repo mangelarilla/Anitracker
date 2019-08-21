@@ -1,9 +1,11 @@
 import { getAccessToken } from './oauth.js';
+import { updateSyncAttempts } from './ui.js';
 
 export function getWatchingList(userId) {
 	const options = buildWatchingQuery(userId);
 
 	return fetch(ApiUrl, options)
+		.then(response => processHeaders(response))
 		.then(response => response.json())
 		.then(data => data.data.MediaListCollection.lists[0].entries || []);
 }
@@ -12,6 +14,7 @@ export function updateWatchingListEntry(listEntryId, watchedEpisodes) {
 	const options = buildUpdateQuery(listEntryId, watchedEpisodes);
 
 	return fetch(ApiUrl, options)
+		.then(response => processHeaders(response))
 	  .then(response => response.json())
 		.then(data => data.data.SaveMediaListEntry || {});
 }
@@ -84,4 +87,11 @@ function buildUpdateQuery(listEntryId, watchedEpisodes) {
 			}
 		})
 	}
+}
+
+function processHeaders(response) {
+	const remain = response.headers.get("X-RateLimit-Remaining");
+	updateSyncAttempts(remain);
+	
+	return response;
 }
