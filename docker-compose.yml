@@ -1,12 +1,20 @@
 version: '3.4'  
 
 services:
+  restore:
+    image: node:carbon-jessie-slim
+    volumes:
+      - ./:/app
+    working_dir: /app
+    command: "npm install"
   build:
     image: huli/grunt:alpine
     volumes: 
       - ./:/srv
     working_dir: /srv
     command: "build"
+    depends_on:
+      - restore
   anitracker:
     image: nginx:stable
     volumes: 
