@@ -1,7 +1,7 @@
-import { increaseEpisodes, decreaseEpisodes, sync } from './ui.listeners.js';
-import { getWatchingList } from './anilist-queries.js';
-import { showProviderSelection, showSync, renderWatchingList, isProviderSelectionVisible } from './ui.js';
-import { getAccessTokenExpiresIn, renewToken } from './oauth.js';
+import { increaseEpisodes, decreaseEpisodes, sync } from '/ui.listeners.js';
+import { getWatchingList } from '/anilist-queries.js';
+import { showProviderSelection, showSync, renderWatchingList, isProviderSelectionVisible } from '/ui.js';
+import { getAccessTokenExpiresIn, renewToken } from '/oauth.js';
 
 // Expose DOM listeners
 window.increaseEpisodes = increaseEpisodes;
