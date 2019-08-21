@@ -3,19 +3,17 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    uglify: {
-      build: {
-        files: [{
-          expand: true,
-          cwd: 'app/js',
-          src: '**/*.js',
-          dest: 'dist/js'
-        }]
+    copy: {
+      main: {
+        files: [
+          {expand: true, src: ['app/**'], dest: 'dist/'},
+          {expand: true, cwd: 'wwwroot', src: '**', dest: 'dist/'}
+        ]
       }
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('build', ['copy']);
 };
