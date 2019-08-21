@@ -1,27 +1,17 @@
 version: '3.4'  
 
 services:
-  restore:
+  install:
     image: node:carbon-jessie-slim
     volumes:
       - ./:/app
     working_dir: /app
     command: "npm install"
-  build:
-    image: huli/grunt:alpine
-    volumes: 
-      - ./:/srv
-    working_dir: /srv
-    command: "build"
-    depends_on:
-      - restore
   anitracker:
     image: nginx:stable
     volumes: 
       - ./dev.nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./dist:/usr/share/nginx/html
+      - ./src:/usr/share/nginx/html
     ports:
       - "8088:80"
     command: "nginx -g 'daemon off;'"
-    depends_on:
-      - build
