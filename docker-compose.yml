@@ -1,6 +1,12 @@
 version: '3.4'  
 
 services:
+  build:
+    image: huli/grunt:alpine
+    volumes: 
+      - ./:/srv
+    working_dir: /srv
+    command: "build"
   anitracker:
     image: nginx:stable
     volumes: 
@@ -9,3 +15,5 @@ services:
     ports:
       - "8088:80"
     command: "nginx -g 'daemon off;'"
+    depends_on:
+      - build
