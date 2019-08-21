@@ -1,6 +1,6 @@
 import { increaseEpisodes, decreaseEpisodes, sync } from './ui.listeners.js';
 import { getWatchingList } from './anilist-queries.js';
-import { showProviderSelection, renderWatchingList, isProviderSelectionVisible } from './ui.js';
+import { showProviderSelection, showSync, renderWatchingList, isProviderSelectionVisible } from './ui.js';
 import { getAccessTokenExpiresIn, renewToken } from './oauth.js';
 
 // Expose DOM listeners
@@ -21,8 +21,9 @@ if ('serviceWorker' in navigator) {
 const userId = localStorage.getItem('Anilist_user_id');
 
 if (!userId) {
-  showProviderSelection()
+  showProviderSelection();
 } else {
+  showSync();
   getWatchingList(userId)
     .then(list => renderWatchingList(list))
     .catch(error => console.error(error));
