@@ -35,7 +35,7 @@ query ($id: Int) {
 						airingAt
 					}
 					coverImage {
-						large
+						extraLarge
 						medium
 						color
 					}

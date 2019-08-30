@@ -15,9 +15,11 @@ export function renderWatchingList(entries) {
 
 	main.innerHTML = entries.map(entry =>  `
 		<figure data-id="${entry.id}">
-			<img src="${entry.media.coverImage.large}" alt="${entry.media.title.userPreferred}" />
-			<figcaption>${entry.media.title.userPreferred}</figcaption>
-			<figcaption>Ep. <span class="episode-progress">${entry.progress}</span>/${entry.media.episodes || "??"}</figcaption>
+			<img src="${entry.media.coverImage.extraLarge}" alt="${entry.media.title.userPreferred}" />
+			<figcaption>
+				<span class="episode-progress">${entry.progress}</span>
+				<span class="episode-total">${entry.media.episodes || "??"}</span>
+			</figcaption>
 			<figcaption>
 				<button onclick="decreaseEpisodes(${entry.id})">-</button>
 				<button onclick="increaseEpisodes(${entry.id})">+</button>

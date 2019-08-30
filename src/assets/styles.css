@@ -30,4 +30,41 @@ figure {
 figure>img {
 	max-height: 20rem;
 	max-width: inherit;
+	width: 14rem;
+}
+
+figure button {
+	margin: 0;
+	width: 49%;
+	border: solid thin;
+	background-color: white;
+}
+
+figure button:first-child {
+	border-top-left-radius: 0.5rem;
+	border-bottom-left-radius: 0.5rem;
+}
+
+figure button:last-child {
+	border-top-right-radius: 0.5rem;
+	border-bottom-right-radius: 0.5rem;
+}
+
+figure button:hover {
+	background-color: black;
+	color: white;
+}
+
+figcaption>span {
+	width: 49%;
+	display: inline-block;
+	font-size: 2rem;
+}
+
+figcaption>span.episode-progress {
+	text-align: right;
+}
+
+figcaption>span.episode-total:before {
+	content: "/ ";
 }
