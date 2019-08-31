@@ -4,8 +4,8 @@
     "start_url" : "/",
     "display" : "standalone",
     "orientation" : "portrait",
-    "background_color" : "white",
-    "theme_color" : "#80abb2",
+    "background_color" : "#f6f8fa",
+    "theme_color" : "#f6f8fa",
     "lang" : "English",
     "description" : "Cross platform anime tracker for Anilist",
     "icons" : [
