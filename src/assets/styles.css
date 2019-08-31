@@ -25,6 +25,9 @@ figure {
 	border-style: solid;
 	border-width: 0.1rem;
 	max-width: 14rem;
+	-webkit-box-shadow: 10px 10px 35px -15px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 35px -15px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 35px -15px rgba(0,0,0,0.75);
 }
 
 figure>img {
@@ -35,9 +38,11 @@ figure>img {
 
 figure button {
 	margin: 0;
-	width: 49%;
+	width: 50%;
 	border: solid thin;
 	background-color: white;
+	font-size: 2rem;
+	height: 3rem;
 }
 
 figure button:first-child {
@@ -56,15 +61,16 @@ figure button:hover {
 }
 
 figcaption>span {
-	width: 49%;
 	display: inline-block;
 	font-size: 2rem;
+	text-align: center;
+	margin-bottom: 0.5rem;
 }
 
-figcaption>span.episode-progress {
-	text-align: right;
+figcaption>span.episode-progress, figcaption>span.episode-total {
+	width: 45%;
 }
 
-figcaption>span.episode-total:before {
-	content: "/ ";
+figcaption>span.episode-separator {
+	width: 10%;
 }

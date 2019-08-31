@@ -17,12 +17,10 @@ export function renderWatchingList(entries) {
 		<figure data-id="${entry.id}">
 			<img src="${entry.media.coverImage.extraLarge}" alt="${entry.media.title.userPreferred}" />
 			<figcaption>
-				<span class="episode-progress">${entry.progress}</span>
-				<span class="episode-total">${entry.media.episodes || "??"}</span>
+				<span class="episode-progress">${entry.progress}</span><span class="episode-separator">/</span><span class="episode-total">${entry.media.episodes || "??"}</span>
 			</figcaption>
 			<figcaption>
-				<button onclick="decreaseEpisodes(${entry.id})">-</button>
-				<button onclick="increaseEpisodes(${entry.id})">+</button>
+				<button onclick="decreaseEpisodes(${entry.id})">-</button><button onclick="increaseEpisodes(${entry.id})">+</button>
 			</figcaption>
 		</figure>`
 	).join('\n');
