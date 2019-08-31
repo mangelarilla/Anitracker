@@ -37,11 +37,3 @@ export function getEpisodeProgress(entryId) {
 export function renderEpisodeProgress(entryId, progress) {
 	document.querySelector(`figure[data-id="${entryId}"] .episode-progress`).innerText = progress;
 }
-
-export function showSync() {
-	document.getElementById('sync').style.display = "block";
-}
-
-export function updateSyncAttempts(remainingAttempts) {
-	document.getElementById('sync-attempts').innerText = remainingAttempts;
-}

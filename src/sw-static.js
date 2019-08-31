@@ -3,7 +3,6 @@ const urlsToCache = [
   '/',
   '/assets/styles.css',
   '/app/anilist-queries.js',
-  '/app/db.js',
   '/app/main.js',
   '/app/oauth.js',
   '/app/ui.js',

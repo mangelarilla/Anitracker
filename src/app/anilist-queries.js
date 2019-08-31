@@ -1,5 +1,4 @@
 import { getAccessToken } from './oauth.js';
-import { updateSyncAttempts } from './ui.js';
 
 export function getWatchingList(userId) {
 	const options = buildWatchingQuery(userId);
@@ -15,7 +14,7 @@ export function updateWatchingListEntry(listEntryId, watchedEpisodes) {
 
 	return fetch(ApiUrl, options)
 		.then(response => processHeaders(response))
-	  .then(response => response.json())
+	  	.then(response => response.json())
 		.then(data => data.data.SaveMediaListEntry || {});
 }
 
@@ -91,7 +90,7 @@ function buildUpdateQuery(listEntryId, watchedEpisodes) {
 
 function processHeaders(response) {
 	const remain = response.headers.get("X-RateLimit-Remaining");
-	updateSyncAttempts(remain);
+	console.log("Remaining sync attempts: " + remain);
 	
 	return response;
 }

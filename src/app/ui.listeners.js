@@ -11,10 +11,6 @@ export function decreaseEpisodes(listEntryId) {
 	updateEpisodes(listEntryId, currentProgress-1);
 }
 
-export function sync() {
-	
-}
-
 function updateEpisodes(listEntryId, watchedEpisodes) {
   updateWatchingListEntry(listEntryId, watchedEpisodes)
     .then(media => renderEpisodeProgress(media.id, media.progress))
