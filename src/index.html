@@ -11,9 +11,14 @@
 		<script type="module" src="./app/main.js"></script>
 	</head>
 	<body>
-		<dialog>
-			<p>Get your list from <a href="https://anilist.co/api/v2/oauth/authorize?client_id=2235&response_type=token" rel="noopener">Anilist</a></p>
-		</dialog>
-		<main></main>
+		<div id="app">
+			<dialog :open="!userId">
+				<p>Get your list from <a :href="url" rel="noopener">Anilist</a></p>
+			</dialog>
+			<main v-if="userId">
+				<anime v-for="entry in list" :entry="entry" />
+			</main>
+		</div>
 	</body>
+	<script src="https://unpkg.com/vue"></script>
 </html>

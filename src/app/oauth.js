@@ -1,5 +1,3 @@
-import { getAuthUrl } from './ui.js';
-
 export function parseJwt (token) {
 	const base64Url = token.split('.')[1];
 	const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -29,12 +27,6 @@ export function getAccessTokenExpiresIn() {
 	const expires_at = localStorage.getItem('Anilist_access_token_expires_at');
 
 	return expires_at - Date.now();
-}
-
-export function renewToken() {
-	const auth_url = getAuthUrl();
-
-	window.location.href = auth_url;
 }
 
 export function getAccessToken() {
