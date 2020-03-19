@@ -5,7 +5,7 @@ import { anime } from './components/anime.js';
 var app = new Vue({
   el: '#app',
   data: {
-    authUrl: "https://anilist.co/api/v2/oauth/authorize?client_id=2235&response_type=token"
+    authUrl: "https://anilist.co/api/v2/oauth/authorize?client_id=2235&response_type=token",
     list: null
   },
   computed: {
