@@ -22,6 +22,7 @@ var app = new Vue({
       localStorage.setItem('Anilist_access_token_expires_at', Date.now() + (oauthCallback.expires_in - 60));
       localStorage.setItem('Anilist_access_token', oauthCallback.access_token);
       localStorage.setItem('Anilist_user_id', jwt.sub);
+      window.location.href = "";
     }
 
     // Validate oauth token
