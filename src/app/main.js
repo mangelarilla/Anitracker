@@ -34,6 +34,6 @@ var app = new Vue({
 
     getWatchingList(this.userId)
       .then(list => this.list = list)
-      .catch(err => console.error(error));
+      .catch(err => console.error(err));
   }
 });
