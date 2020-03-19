@@ -12,9 +12,6 @@
 	</head>
 	<body>
 		<div id="app">
-			<dialog :open="!userId">
-				<p>Get your list from <a :href="authUrl" rel="noopener">Anilist</a></p>
-			</dialog>
 			<main v-if="userId">
 				<anime v-for="entry in list" :entry="entry" :key="entry.id" />
 			</main>
