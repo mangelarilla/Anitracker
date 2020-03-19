@@ -26,6 +26,10 @@ export function getOAuthPayload() {
 export function getAccessTokenExpiresIn() {
 	const expires_at = localStorage.getItem('Anilist_access_token_expires_at');
 
+	if(!expires_at) {
+		return 0;
+	}
+
 	return expires_at - Date.now();
 }
 

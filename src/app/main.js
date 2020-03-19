@@ -1,5 +1,5 @@
 import { getWatchingList } from './anilist-queries.js';
-import { getAccessTokenExpiresIn, renewToken } from './oauth.js';
+import { getAccessTokenExpiresIn, getOAuthPayload, parseJwt } from './oauth.js';
 import { anime } from './components/anime.js';
 
 var app = new Vue({
@@ -14,18 +14,26 @@ var app = new Vue({
     }
   },
   mounted() {
-    if(this.userId) {
-      getWatchingList(this.userId)
-        .then(list => this.list = list)
-        .catch(err => console.error(error));
+    // anilist oauth callback
+    var oauthCallback = getOAuthPayload();
+    if (oauthCallback) {
+      const jwt = parseJwt(oauthCallback.access_token);
+
+      localStorage.setItem('Anilist_access_token_expires_at', Date.now() + (oauthCallback.expires_in - 60));
+      localStorage.setItem('Anilist_access_token', oauthCallback.access_token);
+      localStorage.setItem('Anilist_user_id', jwt.sub);
     }
 
-    // Renew token flow
+    // Validate oauth token
     const expires_in = getAccessTokenExpiresIn();
     if(expires_in > 0) {
-      setTimeout(renewToken, expires_in);
-    } else if (!this.userId) {
+      setTimeout(() => window.location.href = this.authUrl, expires_in);
+    } else {
        window.location.href = this.authUrl;
     }
+
+    getWatchingList(this.userId)
+      .then(list => this.list = list)
+      .catch(err => console.error(error));
   }
 });
