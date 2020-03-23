@@ -2,30 +2,34 @@
   "name": "Anitracker",
   "version": "1.0.0",
   "description": "Cross platform anime tracker for Anilist",
+  "author": "mangelarilla",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mangelarilla/Anitracker.git"
-  },
-  "keywords": [],
-  "author": "mangelarilla",
-  "license": "GPLv3",
-  "bugs": {
-    "url": "https://github.com/mangelarilla/Anitracker/issues"
-  },
-  "homepage": "https://github.com/mangelarilla/Anitracker#readme",
   "dependencies": {
-    "vue": "^2.6.11"
+    "graphql": "^14.6.0",
+    "vue": "^2.6.11",
+    "vue-apollo": "^3.0.3"
   },
   "devDependencies": {
     "@vue/cli-service": "~4.2.0",
+    "graphql-tag": "^2.9.0",
+    "vue-cli-plugin-apollo": "~0.21.3",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/mangelarilla/Anitracker/issues"
+  },
+  "homepage": "https://github.com/mangelarilla/Anitracker#readme",
+  "keywords": [],
+  "license": "GPLv3",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mangelarilla/Anitracker.git"
+  }
 }

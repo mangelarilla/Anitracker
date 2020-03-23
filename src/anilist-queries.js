@@ -1,14 +1,5 @@
 import { getAccessToken } from './oauth.js';
 
-export function getWatchingList(userId) {
-	const options = buildWatchingQuery(userId);
-
-	return fetch(ApiUrl, options)
-		.then(response => processHeaders(response))
-		.then(response => response.json())
-		.then(data => data.data.MediaListCollection.lists[0].entries || []);
-}
-
 export function updateWatchingListEntry(listEntryId, watchedEpisodes) {
 	const options = buildUpdateQuery(listEntryId, watchedEpisodes);
 
@@ -18,30 +9,11 @@ export function updateWatchingListEntry(listEntryId, watchedEpisodes) {
 		.then(data => data.data.SaveMediaListEntry || {});
 }
 
-const WatchingQuery = `
-query ($id: Int) {
-	MediaListCollection(userId: $id, type: ANIME, status: CURRENT) {
-		lists {
-			entries {
-				id
-				progress
-				media {
-					title {
-						userPreferred
-					}
-					episodes
-					nextAiringEpisode {
-						airingAt
-					}
-					coverImage {
-						extraLarge
-						medium
-						color
-					}
-				}
-			}
-		}
-	}
+const WatchingQuerySingle = `
+query ($search: String) {
+	Media(type: ANIME, search: $search, onList: true) {
+		id
+  	}
 }
 `;
 
@@ -55,6 +27,20 @@ mutation ($id: Int, $progress: Int) {
 `;
 
 const ApiUrl = 'https://graphql.anilist.co';
+
+function buildWatchingQuerySingle(title) {
+	return {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+		},
+		body: JSON.stringify({
+			query: WatchingQuerySingle,
+			variables: { search: title }
+		})
+	}
+}
 
 function buildWatchingQuery(userId) {
 	return {
