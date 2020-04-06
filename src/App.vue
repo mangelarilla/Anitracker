@@ -36,7 +36,7 @@ export default {
         await onLogin(this.$apollo, oauthCallback.access_token);
         localStorage.setItem('Anilist_user_id', jwt.sub);
 
-        window.location.hash = "";
+        window.location.href = "";
       }
     },
     async clearSession() {
