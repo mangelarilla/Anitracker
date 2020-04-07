@@ -5,7 +5,22 @@
 			<span class="episode-progress">{{entry.progress}}</span><span class="episode-separator">/</span><span class="episode-total">{{entry.media.episodes || "??"}}</span>
 		</figcaption>
 		<figcaption>
-			<button @mouseclick="decreaseEpisodes()">-</button><button @mouseclick="increaseEpisodes()">+</button>
+      <ApolloMutation
+        :mutation="gql => gql`
+          mutation ($id: Int, $progress: Int) {
+            SaveMediaListEntry (id: $id, progress: $progress) {
+              id
+              progress
+            }
+          }
+        `"
+      >
+        <template v-slot="{ mutate, loading, error }">
+          <button :disabled="loading" @click="mutate({variables: { id: entry.id, progress: entry.progress - 1}})">-</button>
+          <button :disabled="loading" @click="mutate({variables: { id: entry.id, progress: entry.progress + 1}})">+</button>
+          <p v-if="error">An error occurred: {{ error }}</p>
+        </template>
+      </ApolloMutation>
 		</figcaption>
 	</figure>
 </template>
@@ -24,18 +39,6 @@
         type: Boolean,
         required: false
       }
-    },
-    methods: {
-      decreaseEpisodes() {
-          updateWatchingListEntry(this.entry.id, this.entry.progress - 1)
-            .then(media =>  this.entry.progress = media.progress)
-            .catch(error => console.error(error));
-      },
-      increaseEpisodes() {
-          updateWatchingListEntry(this.entry.id, this.entry.progress + 1)
-            .then(media =>  this.entry.progress = media.progress)
-            .catch(error => console.error(error));
-      },
     }
   }
 </script>
