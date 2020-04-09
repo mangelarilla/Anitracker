@@ -31,8 +31,11 @@
         <div v-else-if="error">An error occurred</div>
 
         <!-- Result -->
+        <div v-else-if="data && animeId">
+          <Anime v-for="entry in data.MediaListCollection.lists[0].entries.filter(e => e.media.id == animeId)" :entry="entry" :key="entry.id" :minimal="!!animeId" />
+        </div>
         <div v-else-if="data">
-          <Anime v-for="entry in data.MediaListCollection.lists[0].entries" :entry="entry" :key="entry.id" :minimal="animeId" />
+          <Anime v-for="entry in data.MediaListCollection.lists[0].entries" :entry="entry" :key="entry.id" />
         </div>
 
         <!-- No result -->

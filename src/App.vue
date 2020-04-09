@@ -3,12 +3,14 @@
     <dialog :open="!userId">
       <p>Get your list from <a :href="authUrl" rel="noopener">Anilist</a></p>
     </dialog>  
-    <AnimeList v-if="userId" :userId="userId" />
+    <AnimeList v-if="userId && !title" :userId="userId" />
+    <AnimeQuery v-else-if="userId && title" :userId="userId" :search="title" />
   </div>
 </template>
 
 <script>
 import AnimeList from './components/AnimeList.vue';
+import AnimeQuery from './components/AnimeQuery.vue';
 import { onLogin, onLogout } from './vue-apollo.js';
 import { getAccessTokenExpiresIn, getOAuthPayload, parseJwt } from './oauth.js';
 
@@ -24,6 +26,9 @@ export default {
   computed: {
     authUrl() {
       return `https://anilist.co/api/v2/oauth/authorize?client_id=${process.env.VUE_APP_ANILIST}&response_type=token`;
+    },
+    title() {
+      return this.getQueryValue("title");
     }
   },
   methods: {
@@ -43,12 +48,16 @@ export default {
       localStorage.removeItem('Anilist_access_token_expires_at');
       localStorage.removeItem('Anilist_user_id');
       await onLogout(this.$apollo);
+    },
+    getQueryValue(queryKey) {
+      const urlParams = new URLSearchParams(window.location.search);
+
+      return urlParams.get(queryKey);
     }
   },
   mounted() {
     // anilist oauth callback
     this.initSession();
-    this.userId = localStorage.getItem('Anilist_user_id');
 
     // Validate oauth token
     const expires_in = getAccessTokenExpiresIn();
@@ -57,9 +66,12 @@ export default {
     } else {
       this.clearSession();
     }
+
+    this.userId = localStorage.getItem('Anilist_user_id');
   },
   components: {
-    AnimeList
+    AnimeList,
+    AnimeQuery
   }
 }
 </script>

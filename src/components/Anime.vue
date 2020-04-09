@@ -26,8 +26,6 @@
 </template>
 
 <script>
-  import { updateWatchingListEntry } from '../anilist-queries.js';
-
   export default {
     name: 'Anime',
     props: {
@@ -50,6 +48,7 @@ figure {
   border-radius: 1rem;
   border-style: solid;
   border-width: 0.1rem;
+  min-width: 10rem;
   max-width: 14rem;
   -webkit-box-shadow: 10px 10px 35px -15px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 35px -15px rgba(0,0,0,0.75);
