@@ -2,7 +2,7 @@
   <main>
     <ApolloQuery
       :query="gql => gql`query ($userId: Int) {
-        MediaListCollection(userId: $userId, type: ANIME, status: CURRENT) {
+        MediaListCollection(userId: $userId, type: ANIME, status_in: [CURRENT,REPEATING]) {
           lists {
             entries {
               id
@@ -32,10 +32,10 @@
 
         <!-- Result -->
         <div v-else-if="data && animeId">
-          <Anime v-for="entry in data.MediaListCollection.lists[0].entries.filter(e => e.media.id == animeId)" :entry="entry" :key="entry.id" :minimal="!!animeId" />
+          <Anime v-for="entry in mapList(data).filter(e => e.media.id == animeId)" :entry="entry" :key="entry.id" :minimal="!!animeId" />
         </div>
         <div v-else-if="data">
-          <Anime v-for="entry in data.MediaListCollection.lists[0].entries" :entry="entry" :key="entry.id" />
+          <Anime v-for="entry in mapList(data)" :entry="entry" :key="entry.id" />
         </div>
 
         <!-- No result -->
@@ -56,6 +56,12 @@
       },
       animeId: {
         required: false
+      }
+    },
+    methods: {
+      mapList(data) {
+        return data.MediaListCollection.lists
+          .reduce((acc, cur) => acc.concat(cur.entries), []);
       }
     },
     components: {
